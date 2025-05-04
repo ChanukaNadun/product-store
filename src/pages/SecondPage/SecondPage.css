@@ -1,0 +1,90 @@
+.product-card-body {
+  max-width: 100%;
+  max-height: 450px;
+  overflow: hidden;
+}
+
+.product-card-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  padding: 2rem;
+}
+
+.gradient-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 100%
+  );
+}
+
+.gradient-overlay-sm {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+}
+
+.featured-card {
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.featured-card:hover {
+  transform: translateY(-5px);
+}
+
+.featured-card img {
+  transition: transform 0.5s ease;
+}
+
+.featured-card:hover img {
+  transform: scale(1.03);
+}
+
+.secondary-card {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.secondary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-card .card-hover-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.secondary-card:hover .card-hover-content {
+  opacity: 1;
+}
+
+@media (max-width: 767.98px) {
+  .overflow-auto::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .overflow-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .overflow-auto::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  .overflow-auto::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}

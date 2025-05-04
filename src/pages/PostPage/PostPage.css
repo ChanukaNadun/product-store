@@ -1,0 +1,19 @@
+.posts-card {
+    max-height: 350px;
+    max-width: 100%;
+    overflow: hidden;
+    background:#ffffff;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;   
+}
+
+.posts-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.post-image {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+}
+

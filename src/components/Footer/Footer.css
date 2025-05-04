@@ -1,0 +1,17 @@
+.custom-footer{
+    background-color: #f8f9fa;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    border-top: 1px solid #333;
+}
+
+.footer-link {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease; 
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+    color: #007BFF;
+}
