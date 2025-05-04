@@ -8,7 +8,7 @@ import SecondPage from './pages/SecondPage/SecondPage';
 
 function App() {
   return (
-    <div className="container">
+    <div>
         <Navbar/>
         <SecondPage />
         <PostPage />
