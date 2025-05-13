@@ -1,54 +1,35 @@
-import React, { useState, useEffect, useRef } from 'react'
-import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
+
 import "./PostPage.css";
+import { getNewProducts, getPosts } from "../../Services/secondPageService";
 
 function PostPage() {
-
-const [posts, setPosts] = useState([]);
-const [images, setImages] = useState([]);
-const [combinedData, setCombinedData] = useState([]);
-const scrollRef = useRef(null);
-
-useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/posts")
-    .then((response) => {
-        setPosts(response.data.slice(10, 20));
-        console.log("post response",response.data.slice(10, 20));
-    })
-    .catch((error) => {
-        console.log(error);
-    })
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((response) => {
-        setImages(response.data.slice(10, 20));
-        console.log("image response", response.data.slice(10, 20));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-},[]);
-
-useEffect(() => {
-  console.log("Updated posts:", posts);
-}, [posts]);
-
-useEffect(() => {
-  console.log("Updated images:", images);
-},[images]);
-
-const merge = posts.map((post, index) => ({
-    ...post,
-    image: images[index] ? images[index].image : null,
-  }));
-
+  const scrollRef = useRef(null);
+  const [loading, setLoading] = useState(true);
+  const [combinedData, setCombinedData] = useState([]);
+  
   useEffect(() => {
-    setCombinedData(merge);
-  }, [posts, images]);
+    const fetchData = async () => {
+      try {
+        const resProducts = await getNewProducts();
+        const resPosts = await getPosts();
 
-  useEffect(() => {
-    console.log("Updated combined data:", combinedData);
-  }, [combinedData]);
+        setCombinedData(
+          resPosts.map((post, index) => ({
+            ...post,
+            image: resProducts[index]?.image || null,
+          }))
+        );
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -68,35 +49,39 @@ const merge = posts.map((post, index) => ({
         <i className="bi bi-chevron-left"></i>
       </button>
 
-      <div className="row g-4 scroll-container" ref={scrollRef}>
-        {merge.map((item, index) => (
-          <div
-            className="card posts-card shadow-sm border-0 d-flex flex-column align-items-center text-center p-3"
-            key={index}
-          >
-            <div className="post-image-container mb-3">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="post-image mb-3"
-              />
-              <div className="image-overlay"></div>
-            </div>
-            <div className="badge bg-primary bg-opacity-10 text-primary mb-2">
-              #{item.id}
-            </div>
-            <h4 className="card-title mb-2" title={item.title}>
-              {item.title}
-            </h4>
-            <p className="card-text small text-muted mb-3">
-              {item.body.slice(0, 80)}...
-            </p>
+      <div className="scroll-container g-4 " ref={scrollRef}>
+        {loading ? (
+          <div></div>
+        ) : (
+          combinedData.map((item, index) => (
+            <div
+              className="card posts-card shadow-sm border-0 d-flex flex-column align-items-center text-center p-3"
+              key={index}
+            >
+              <div className="post-image-container mb-3">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="post-image mb-3"
+                />
+                <div className="image-overlay"></div>
+              </div>
+              <div className="badge bg-primary bg-opacity-10 text-primary mb-2">
+                #{item.id}
+              </div>
+              <h4 className="card-title mb-2" title={item.title}>
+                {item.title}
+              </h4>
+              <p className="card-text small text-muted mb-3">
+                {item.body.slice(0, 80)}...
+              </p>
 
-            <button className="btn btn-outline-primary btn-sm mt-auto">
-              Read More <i className="bi bi-arrow-right ms-1"></i>
-            </button>
-          </div>
-        ))}
+              <button className="btn btn-outline-primary btn-sm mt-auto">
+                Read More <i className="bi bi-arrow-right ms-1"></i>
+              </button>
+            </div>
+          ))
+        )}
       </div>
 
       <button
@@ -109,4 +94,4 @@ const merge = posts.map((post, index) => ({
   );
 }
 
-export default PostPage
+export default PostPage;

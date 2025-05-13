@@ -58,6 +58,7 @@
 }
 
 @media (max-width: 767.98px) {
+  
   .overflow-auto::-webkit-scrollbar {
     height: 5px;
   }
