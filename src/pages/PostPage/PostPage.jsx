@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from "axios";
 import "./PostPage.css";
 
@@ -7,6 +7,7 @@ function PostPage() {
 const [posts, setPosts] = useState([]);
 const [images, setImages] = useState([]);
 const [combinedData, setCombinedData] = useState([]);
+const scrollRef = useRef(null);
 
 useEffect(() => {
     axios.get("https://jsonplaceholder.typicode.com/posts")
@@ -49,43 +50,59 @@ const merge = posts.map((post, index) => ({
     console.log("Updated combined data:", combinedData);
   }, [combinedData]);
 
-  
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -500 : 500,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <div className="container py-4 position-relative">
-      <button className="btn btn-scroll scroll-left d-none d-lg-block">
+      <button
+        onClick={() => scroll("left")}
+        className="btn btn-scroll scroll-left d-none d-lg-block"
+      >
         <i className="bi bi-chevron-left"></i>
       </button>
 
-      <div className="row g-4 scroll-container">
+      <div className="row g-4 scroll-container" ref={scrollRef}>
         {merge.map((item, index) => (
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3" key={index}>
-            <div className="card posts-card shadow-sm border-0 h-100 d-flex flex-column align-items-center text-center p-3">
-              <div className="post-image-container mb-3">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="post-image mb-3"
-                />
-                <div className="image-overlay"></div>
-              </div>
-              <div className="badge bg-primary bg-opacity-10 text-primary mb-2">
-                #{item.id}
-              </div>
-              <h4 className="card-title mb-3">{item.title}</h4>
-              <div className="card-text small text-muted mb-3 flex-grow-1">
-                {item.body}
-              </div>
-
-              <button className="btn btn-outline-primary btn-sm mt-auto">
-                Read More <i className="bi bi-arrow-right ms-1"></i>
-              </button>
+          <div
+            className="card posts-card shadow-sm border-0 d-flex flex-column align-items-center text-center p-3"
+            key={index}
+          >
+            <div className="post-image-container mb-3">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="post-image mb-3"
+              />
+              <div className="image-overlay"></div>
             </div>
+            <div className="badge bg-primary bg-opacity-10 text-primary mb-2">
+              #{item.id}
+            </div>
+            <h4 className="card-title mb-2" title={item.title}>
+              {item.title}
+            </h4>
+            <p className="card-text small text-muted mb-3">
+              {item.body.slice(0, 80)}...
+            </p>
+
+            <button className="btn btn-outline-primary btn-sm mt-auto">
+              Read More <i className="bi bi-arrow-right ms-1"></i>
+            </button>
           </div>
         ))}
       </div>
 
-      <button className="btn btn-scroll scroll-right d-none d-lg-block">
+      <button
+        onClick={() => scroll("right")}
+        className="btn btn-scroll scroll-right d-none d-lg-block"
+      >
         <i className="bi bi-chevron-right"></i>
       </button>
     </div>
