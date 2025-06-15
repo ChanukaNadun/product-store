@@ -6,6 +6,7 @@ import { getProducts } from "../../Services/secondPageService";
 function SecondPage() {
   const [post, setPost] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +27,10 @@ function SecondPage() {
   };
 
   const displayedPosts = showAll ? post : post?.slice(0, 12);
+ 
+  const filteredPosts = displayedPosts?.filter((item) =>
+    item.title.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   return (
     <>
@@ -94,11 +99,34 @@ function SecondPage() {
         </div>
       </div>
 
+      <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4 shadow-sm">
+        <div className="container-fluid d-flex justify-content-end">
+          <div
+            className="search-container"
+            style={{ maxWidth: "400px", width: "100%" }}
+          >
+            <div className="input-group">
+              <span className="input-group-text bg-white border-end-0">
+                <i className="bi bi-search text-muted"></i>
+              </span>
+              <input
+                className="form-control border-start-0 rounded-end shadow-sm"
+                type="search"
+                placeholder="Search posts by title or description..."
+                aria-label="Search"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+
       <div className="container py-3">
         {post && (
           <>
             <div className="row g-4">
-              {displayedPosts?.map((product, index) => (
+              {filteredPosts?.map((product, index) => (
                 <Card product={product} index={index} />
               ))}
             </div>

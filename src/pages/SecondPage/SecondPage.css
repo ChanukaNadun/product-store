@@ -57,6 +57,24 @@
   opacity: 1;
 }
 
+.search-container {
+  max-width: 500px;
+  transition: all 0.3s ease;
+}
+
+.input-group-text {
+  border-right: 0;
+}
+
+.form-control:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.input-group .form-control {
+  border-left: 0;
+}
+
 @media (max-width: 767.98px) {
   
   .overflow-auto::-webkit-scrollbar {
@@ -75,5 +93,12 @@
 
   .overflow-auto::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 100%;
+    padding: 0 1rem;
   }
 }
