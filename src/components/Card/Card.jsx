@@ -1,7 +1,14 @@
 import React from 'react'
 import "./Card.css";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
 
 function Card({product, index}) {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
   return (
     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4" key={index}>
       <div className="card h-100 product-card shadow-sm border-0 overflow-hidden">
@@ -58,15 +65,19 @@ function Card({product, index}) {
             <div>
               <span className="h5 text-danger mb-0">${product.price}</span>
               {product.originalPrice && (
-                <del className="text-muted small ms-2">${product.originalPrice}</del>
+                <del className="text-muted small ms-2">
+                  ${product.originalPrice}
+                </del>
               )}
             </div>
             {/* Add to Cart Button */}
-            <button className="btn btn-sm btn-outline-primary rounded-circle">
+            <button
+              onClick={handleAddToCart}
+              className="btn btn-sm btn-outline-primary rounded-circle"
+            >
               <i className="bi bi-cart-plus"></i>
             </button>
           </div>
-
         </div>
       </div>
     </div>
