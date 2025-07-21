@@ -1,24 +1,13 @@
 
 import './App.css';
-import Footer from './components/Footer/Footer';
-import Navbar from './components/Navbar/Navbar';
-import PostPage from './pages/PostPage/PostPage';
-import SecondPage from './pages/SecondPage/SecondPage';
-
+import Router from './router/router';
 
 function App() {
   return (
     <div>
-        <Navbar/>
-        <SecondPage />
-        <PostPage />
-        <Footer/>
-      
+        <Router />
     </div>
   );
 }
 
 export default App;
-
-// https://jsonplaceholder.typicode.com/photos - image apis
-// https://jsonplaceholder.typicode.com/posts - text apis
