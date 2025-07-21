@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layout";
 import Home from "../pages/Home"; 
+import CartPage from "../pages/CartPage/CartPage";
 
 function Router() {
   return (
@@ -19,7 +20,7 @@ function Router() {
               }
             />
             <Route path="onlineOrders" element={<MyOrders />} /> */}
-            
+            <Route path="/cart" element={<CartPage />} />
           </Route>
         </Routes>
       </Suspense>
