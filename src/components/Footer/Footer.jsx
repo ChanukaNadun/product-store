@@ -14,16 +14,16 @@ function Footer() {
               </h5>
               <p>Making the web beautiful, one pixel at a time.</p>
               <div className="social-links mt-4">
-                <a href="#" className="social-icon" aria-label="Facebook">
+                <a href="/" className="social-icon" aria-label="Facebook">
                   <i className="bi bi-facebook"></i>
                 </a>
-                <a href="#" className="social-icon" aria-label="Twitter">
+                <a href="/" className="social-icon" aria-label="Twitter">
                   <i className="bi bi-twitter-x"></i>
                 </a>
-                <a href="#" className="social-icon" aria-label="Instagram">
+                <a href="/" className="social-icon" aria-label="Instagram">
                   <i className="bi bi-instagram"></i>
                 </a>
-                <a href="#" className="social-icon" aria-label="LinkedIn">
+                <a href="/" className="social-icon" aria-label="LinkedIn">
                   <i className="bi bi-linkedin"></i>
                 </a>
               </div>
@@ -34,22 +34,22 @@ function Footer() {
             <h5 className="footer-heading mb-4">Quick Links</h5>
             <ul className="footer-links list-unstyled">
               <li className="mb-2">
-                <a href="#" className="footer-link">
+                <a href="/" className="footer-link">
                   <i className="bi bi-chevron-right me-2"></i>Home
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="footer-link">
+                <a href="/" className="footer-link">
                   <i className="bi bi-chevron-right me-2"></i>About
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="footer-link">
+                <a href="/" className="footer-link">
                   <i className="bi bi-chevron-right me-2"></i>Service
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#" className="footer-link">
+                <a href="/" className="footer-link">
                   <i className="bi bi-chevron-right me-2"></i>Contact
                 </a>
               </li>
@@ -106,17 +106,17 @@ function Footer() {
             <div className="col-md-6 text-center text-md-end">
               <ul className="list-inline mb-0">
                 <li className="list-inline-item">
-                  <a href="#" className="footer-legal-link">
+                  <a href="/" className="footer-legal-link">
                     Privacy Policy
                   </a>
                 </li>
                 <li className="list-inline-item">
-                  <a href="#" className="footer-legal-link">
+                  <a href="/" className="footer-legal-link">
                     Terms of Service
                   </a>
                 </li>
                 <li className="list-inline-item">
-                  <a href="#" className="footer-legal-link">
+                  <a href="/" className="footer-legal-link">
                     Cookies
                   </a>
                 </li>
