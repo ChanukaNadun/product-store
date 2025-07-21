@@ -9,6 +9,7 @@ function Card({product, index}) {
   const handleAddToCart = () => {
     dispatch(addToCart(product));
   };
+  
   return (
     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4" key={index}>
       <div className="card h-100 product-card shadow-sm border-0 overflow-hidden">
@@ -40,7 +41,7 @@ function Card({product, index}) {
           {/* Product Title */}
           <h5 className="card-title product-title mb-2">
             <a
-              href="#"
+              href="/"
               className="text-decoration-none text-dark stretched-link"
             >
               {product.title}

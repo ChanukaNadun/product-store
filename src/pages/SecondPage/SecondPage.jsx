@@ -49,7 +49,7 @@ function SecondPage() {
                 </h5>
                 <p className="card-text mb-4">{post[0]?.description}</p>
                 <a
-                  href="#"
+                  href="/"
                   className="btn btn-light btn-lg px-4 py-2 rounded-pill"
                 >
                   View Collections
@@ -84,7 +84,7 @@ function SecondPage() {
                       </div>
                       <div className="card-hover-content">
                         <a
-                          href="#"
+                          href="/"
                           className="btn btn-outline-light btn-sm rounded-pill"
                         >
                           View <i className="bi bi-arrow-right ms-1"></i>
