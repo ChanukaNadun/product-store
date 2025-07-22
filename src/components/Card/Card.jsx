@@ -8,6 +8,7 @@ function Card({product, index}) {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    console.log("Adding product to cart:", product);
   };
   
   return (
@@ -40,12 +41,13 @@ function Card({product, index}) {
 
           {/* Product Title */}
           <h5 className="card-title product-title mb-2">
-            <a
-              href="/"
+            <div
+              // href="#"
               className="text-decoration-none text-dark stretched-link"
             >
               {product.title}
-            </a>
+            </div>
+            {/* </a> */}
           </h5>
 
           <div className="d-flex align-items-center mb-2">
@@ -74,7 +76,7 @@ function Card({product, index}) {
             {/* Add to Cart Button */}
             <button
               onClick={handleAddToCart}
-              className="btn btn-sm btn-outline-primary rounded-circle"
+              className="btn btn-sm btn-outline-primary rounded-circle z-3"
             >
               <i className="bi bi-cart-plus"></i>
             </button>
